@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="mustard-ui.css">
+    <script src="jq.js"></script>		
+        <script type="text/javascript">
+            $(function(){				
+                $('#login').click(function(e){
+                    e.preventDefault();
+                    console.log('click');
+
+					let data = {};
+					data.loguser = $('#loguser').val();
+					data.logpassword =$('#logpassword').val();
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: 'http://localhost:3000/login',						
+                        success: function(data){
+                            if(data.redirect==='/'){
+                                window.location=data.redirect
+                            }
+                            $('#a').html('Sai ten dang nhap hoac mat khau')
+                            console.log('success');
+                            console.log(JSON.stringify(data))
+                        }
+                    });
+                });				
+            });
+        </script>
+   </head>
+<body>
+
+    <% include header %>
+
+    <div class="container">
+        <form action="/login" method="POST">
+            <input type="text" id='loguser' placeholder="Tên Đăng Nhập" autocomplete="off">
+            <input type="password" id='logpassword' placeholder="Mật Khẩu" autocomplete="off">
+            <button type="submit" class="button-login" id='login'>Đăng Nhập</button>
+        </form>
+        <div><a href="/forgetpass">Quên Mật Khẩu</a></div>
+        <button class="button-reg"><a href="/register">Đăng Ký</a></button>
+    </div>
+
+    <% include footer %>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+</head>
+<body>
+    
+</body>
+<input type="text" id="userinput" pattern="[0-9]*"> 
+<br> 
+<input type="number" id="number"> 
+
+<script>
+    document.getElementById("userinput").onkeyup =function(){  
+
+//number-format the user input 
+this.value = parseFloat(this.value.replace(/,/g, "")) 
+    .toFixed(0) 
+    .toString() 
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
+
+//set the numeric value to a number input 
+document.getElementById("number").value = this.value.replace(/,/g, "") 
+
+} 
+</script>
+</html>

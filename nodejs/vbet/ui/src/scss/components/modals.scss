@@ -1,0 +1,64 @@
+// MODALS
+// ==============================
+
+$modal-shadow: true !default;
+$modal-bg-color: $color-white !default;
+$modal-mask-color: $color-gray-700 !default;
+$modal-content-bg-color: $color-gray-200 !default;
+
+.modal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba($modal-mask-color, 0.5);
+    z-index: 10;
+    display: none;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 540px;
+    min-width: 90%;
+    transform: translate(-50%, -50%);
+    background: #2d2d2d;
+    border-radius: 5px;
+    overflow: hidden;
+    color:#fff;
+
+    @if $modal-shadow {
+        box-shadow: 0 4px 12px rgba($color-gray-600, 0.5);
+    }
+
+}
+
+.modal-head {
+    background-color: #4b4b4b;
+    padding: 0px 15px;
+    .modal-title {
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
+
+.modal-body {
+    flex: 1;
+    padding: 30px 15px;
+}
+
+.modal-footer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding: 15px;
+
+    & > * {
+        margin-bottom: 0;
+    }
+}

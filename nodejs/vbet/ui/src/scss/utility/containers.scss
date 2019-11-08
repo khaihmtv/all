@@ -1,0 +1,20 @@
+// CONTAINERS
+// ==============================
+
+$container-sizes: (
+    'small'    : 768px,
+    'large'    : 1440px,
+) !default;
+
+.container {
+    max-width: 1200px;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 30px 0;
+}
+
+@each $name, $size in $container-sizes {
+    .container-#{$name} {
+        max-width: $size;
+    }
+}

@@ -1,0 +1,49 @@
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <% if(acc!='unlogin'){ %>
+  <a class='acc'"><%if(sex==0){ %> <span>Bà</span> <%}else{%> <span>Ông</span> <%}%><span class='acc'><%= acc%></span><p class='ba'><%= ba%> VND</p></a>
+  <%}%>
+  <a href="#">Ngân Hàng</a>
+  <a href="#">Sao Kê</a>
+  <a href="#">Tin Nhắn</a>
+  <a href="#">Tài Khoản</a>
+  <a href="/logout">Đăng xuất</a>
+</div>
+<div class="header">
+    <a href='/'><div class="title">Vbet</div></a>  
+    
+    <input type="text" id="userinput" pattern="[0-9]*"> 
+<br> 
+<input type="number" id="number"> 
+
+
+    <div>
+      <% if(acc!='unlogin'){ %>
+      <div class="control" onclick="openNav()"><div></div><div></div><div></div></div>
+      <% }else{ %>
+      <button class="button-login button-large"><a href="login" >Đăng Nhập</a></button>
+      <%}%>
+    </div>
+</div>
+<script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "100%";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+
+  document.getElementById("userinput").onkeyup =function(){  
+
+//number-format the user input 
+this.value = parseFloat(this.value.replace(/,/g, "")) 
+    .toFixed(0) 
+    .toString() 
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
+
+//set the numeric value to a number input 
+document.getElementById("number").value = this.value.replace(/,/g, "") 
+
+} 
+</script>

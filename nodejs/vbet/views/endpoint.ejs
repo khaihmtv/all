@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>jsonp test</title>
+		<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>		
+		<script type="text/javascript">
+            $(function(){				
+                $('#login').click(function(e){
+                    e.preventDefault();
+                    console.log('click');
+                    
+                     /*$.ajax({
+                        dataType: 'jsonp',
+                        data: "data=yeah",						
+                        jsonp: 'callback',
+                        url: 'http://localhost:3000/endpoint?callback=?',						
+                        success: function(data) {
+                            console.log('success');
+                            console.log(JSON.stringify(data));
+                        }
+                    });*/
+					let data = {};
+					data.loguser = $('#loguser').val();
+					data.logpassword =$('#logpassword').val();
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: 'http://localhost:3000/endpoint',						
+                        success: function(data) {
+                            console.log('success');
+                            console.log(JSON.stringify(data))
+                            $('#a').html(data.a)
+                        }
+                    });
+					/*$.ajax('http://localhost:3000/endpoint', {
+					        type: 'POST',
+					        data: JSON.stringify(data),
+					        contentType: 'application/json',
+					        success: function() { console.log('success');},
+					        error  : function() { console.log('error');}
+					});*/
+                });				
+            });
+        </script>
+    </head>
+<body>
+        <div class="container">
+            <form action="/login" method="POST">
+                <input type="text" id='loguser' placeholder="User">
+                <input type="text" id='logpassword' placeholder="Password">
+                <button type="submit" id='login'>Đăng Nhập</button>
+            </form>
+        </div>  
+</body>
+</html>

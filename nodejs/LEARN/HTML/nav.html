@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Nav bar</title>
+<style>
+body{
+	height:2000px;
+}
+	#nav{
+		background-color:gray;
+		font-size:18px;
+		text-align: center;
+		padding:10px;
+		position:fixed;
+		width:970px;
+	}
+	#nav ul{
+		list-style-type: none;
+	}
+	#nav ul li{
+		display:inline;
+		margin-right:65px;
+	}
+	#nav ul li a{
+		text-decoration: none;
+		color:black;
+		padding:5px 10px;
+		border-radius: 5px;
+		transition: color 0.5, background-color 0.5;
+	}
+	#nav ul li a:hover {
+		background-color: #fff;
+		color:red;
+	}
+</style>
+</head>
+<body>
+	<div id="nav">
+		<ul>
+			<li><a href="">Home</a></li>
+			<li><a href="">Blog</a></li>
+			<li><a href="">About</a></li>
+			<li><a href="">Contact</a></li>
+			<li><a href="">Help</a></li>
+		</ul>
+	</div>
+</body>
+</html>

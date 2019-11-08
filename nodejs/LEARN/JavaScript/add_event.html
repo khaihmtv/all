@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+       
+        <div id="result"></div>
+        <input type="button" value="Stop Random" id="stop_random" />
+         <input type="button" value="Start Random" id="start_random">
+        <script language="javascript">
+            // Bước 1: Lấy các đối tượng
+            var result = document.getElementById("result");
+            var button = document.getElementById("stop_random");
+            var button1 = document.getElementById("start_random");
+            var html = document.getElementsByTagName("html")[0];
+           
+            // Bước 2: Định nghĩa hành động hiển thị dãy số random
+            function do_random()
+            {
+                var randomString = Math.random();
+                result.innerHTML = randomString;
+            }
+             
+            // Bước 3: Thêm hành động do_random cho sự kiện mousemove thẻ <html>, 
+            html.addEventListener("mousemove", do_random);
+           
+            // Bước 4: Thêm sự kiện click cho button
+            button.addEventListener("click", function(){
+                // Xóa hành động do_random khỏi sự kiện mousemove
+                html.removeEventListener("mousemove", do_random);
+            });  
+            button1.addEventListener("click", function(){
+                html.addEventListener("mousemove", do_random);
+            }); 
+        </script>
+    </body>
+</html>

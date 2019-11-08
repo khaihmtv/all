@@ -1,0 +1,44 @@
+// ALERTS
+// ==============================
+
+$alert-colors: (
+    'danger'   : #aa4848,
+    'info'     : $color-blue-50,
+    'warning'  : $color-amber-50,
+    'success'  : $color-green-50,
+    'ok'        :#84b752,
+) !default;
+
+.alert {
+    margin: 15px 0;
+    padding: 15px;
+
+}
+
+@each $name, $color in $alert-colors {
+    .alert-#{$name} {
+        background: $color;
+        font-size: 1.2rem
+    }
+
+    .alert-#{$name}-big{
+        background: $color;
+        font-size: 1.3rem;
+    }
+    .alert-#{$name}-e{
+        background: $color;
+        font-size: 1.3rem;
+        color:#fff;
+        padding-left: 10px;
+    }
+    .alert-#{$name}-e{
+        background: $color;
+        font-size: 1.3rem;
+        color:#fff;
+        padding-left: 10px;
+    }
+    .alert-ok{
+        color: black;
+        text-align: center;
+    }
+}

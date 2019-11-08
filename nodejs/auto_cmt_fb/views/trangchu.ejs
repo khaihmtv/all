@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=latin,latin-ext">
+    <link rel="stylesheet" href="https://doc-cdn.iowiuhwer37asdan.net/cdn1103/bundles/css/mainCss.css?v=3.0320066.0">
+    <link rel="stylesheet" href="https://doc-cdn.iowiuhwer37asdan.net/contents/components/webteam/webteam.css?v=03260723">
+</head>
+<body>
+    <header class="header" ms-header=""><nav id="top-navbar" class="navbar navbar-default nav-down">
+    <div id="nav-wrapper" class="container-fluid main-header">
+        <div class="navbar-header">
+            <a ng-href="/vi-vn" id="logo-188bet" class="navbar-brand btn-clk-zoom" href="/vi-vn">&nbsp;</a>
+            <!-- ngRepeat: prod in availableProds --><!-- ngIf: indexMenu(prod.name) --><!-- end ngRepeat: prod in availableProds --><!-- ngIf: indexMenu(prod.name) --><!-- end ngRepeat: prod in availableProds --><!-- ngIf: indexMenu(prod.name) --><!-- end ngRepeat: prod in availableProds --><!-- ngIf: indexMenu(prod.name) --><!-- end ngRepeat: prod in availableProds --><!-- ngIf: indexMenu(prod.name) --><!-- end ngRepeat: prod in availableProds --><!-- ngIf: indexMenu(prod.name) --><!-- end ngRepeat: prod in availableProds --><!-- ngIf: indexMenu(prod.name) --><!-- end ngRepeat: prod in availableProds --><!-- ngIf: indexMenu(prod.name) --><!-- end ngRepeat: prod in availableProds --><!-- ngIf: indexMenu(prod.name) --><!-- end ngRepeat: prod in availableProds -->
+            <!-- ngIf: !hiddenUserpanel --><div class="right-header-controls clearfix ng-scope" ng-if="!hiddenUserpanel">
+                <a ng-href="/vi-vn/user/login" class="btn btn-lightgrey btn-clk-zoom log-in-button" ng-show="!client.sessionD.login &amp;&amp; !isLoginPage() &amp;&amp; client.sessionD.allowAccess" href="/vi-vn/user/login">
+                    <span class="betfont icon-user"></span><span class="log-in-txt ng-scope" translate="txtBtnLogin">Đăng Nhập</span><span class="sign-up-txt ng-scope" translate="txtJoinUsSignUp">Đăng Ký</span>
+                </a>
+                <a ng-show="!client.sessionD.login" href="javascript://" class="btn btn-clk-zoom btn-lightgrey before-logon-button " ng-click="openMenu()"><span class="betfont icon-mobilemenu"></span></a>
+                <a ng-show="client.sessionD.login" href="javascript://" class="btn btn-lightgrey btn-clk-zoom logged-on-button ng-hide" ng-click="openMenu()"><!-- ngIf: msgCounter && (msgCounter.totalCount >0) --><span class="betfont icon-user-logged"></span></a>
+            </div><!-- end ngIf: !hiddenUserpanel -->
+        </div>
+    </div>
+
+    <div class="swipe-menu-products" ng-class="displaylayout.header ? 'nav-up': ' '">
+        <ul id="menu-products" class="nav navbar-nav menu-products list-inline">
+            <!-- ngRepeat: prod in availableProds --><li class="nav-item nav-item-mobile lnk-sports" ng-repeat="prod in availableProds" ng-class="{ active : indexMenu(prod.name), maintenance : prod.isMaintenance == true}">
+                <a ng-href="/vi-vn/sports" data-index="navSbkRoot" class="ng-binding" href="/vi-vn/sports">
+                    <span class="betfont icon-sports btn-block visible-xs"></span>Thể Thao
+                </a>
+            </li><!-- end ngRepeat: prod in availableProds --><li class="nav-item nav-item-mobile lnk-esports" ng-repeat="prod in availableProds" ng-class="{ active : indexMenu(prod.name), maintenance : prod.isMaintenance == true}">
+                <a ng-href="/vi-vn/esports" data-index="navESportsRoot" class="ng-binding" href="/vi-vn/esports">
+                    <span class="betfont icon-esports btn-block visible-xs"></span>eSports
+                </a>
+            </li><!-- end ngRepeat: prod in availableProds --><li class="nav-item nav-item-mobile lnk-casino" ng-repeat="prod in availableProds" ng-class="{ active : indexMenu(prod.name), maintenance : prod.isMaintenance == true}">
+                <a ng-href="/vi-vn/casino" data-index="navCsnRoot" class="ng-binding" href="/vi-vn/casino">
+                    <span class="betfont icon-casino btn-block visible-xs"></span>Casino
+                </a>
+            </li><!-- end ngRepeat: prod in availableProds --><li class="nav-item nav-item-mobile lnk-live" ng-repeat="prod in availableProds" ng-class="{ active : indexMenu(prod.name), maintenance : prod.isMaintenance == true}">
+                <a ng-href="/vi-vn/live" data-index="navLiveCsnRoot" class="ng-binding" href="/vi-vn/live">
+                    <span class="betfont icon-live btn-block visible-xs"></span>Casino Trực Tuyến
+                </a>
+            </li><!-- end ngRepeat: prod in availableProds --><li class="nav-item nav-item-mobile lnk-virtual" ng-repeat="prod in availableProds" ng-class="{ active : indexMenu(prod.name), maintenance : prod.isMaintenance == true}">
+                <a ng-href="/vi-vn/virtual" data-index="navVirtualRoot" class="ng-binding" href="/vi-vn/virtual">
+                    <span class="betfont icon-virtual btn-block visible-xs"></span>THỂ THAO ẢO
+                </a>
+            </li><!-- end ngRepeat: prod in availableProds --><li class="nav-item nav-item-mobile lnk-lotto" ng-repeat="prod in availableProds" ng-class="{ active : indexMenu(prod.name), maintenance : prod.isMaintenance == true}">
+                <a ng-href="/vi-vn/lotto" data-index="navLottoRoot" class="ng-binding" href="/vi-vn/lotto">
+                    <span class="betfont icon-lotto btn-block visible-xs"></span>Xổ Số
+                </a>
+            </li><!-- end ngRepeat: prod in availableProds --><li class="nav-item nav-item-mobile lnk-poker" ng-repeat="prod in availableProds" ng-class="{ active : indexMenu(prod.name), maintenance : prod.isMaintenance == true}">
+                <a ng-href="/vi-vn/poker" data-index="navPokerRoot" class="ng-binding" href="/vi-vn/poker">
+                    <span class="betfont icon-poker btn-block visible-xs"></span>Bài Tố
+                </a>
+            </li><!-- end ngRepeat: prod in availableProds --><li class="nav-item nav-item-mobile lnk-promotions" ng-repeat="prod in availableProds" ng-class="{ active : indexMenu(prod.name), maintenance : prod.isMaintenance == true}">
+                <a ng-href="/vi-vn/promotions" data-index="navPromoRoot" class="ng-binding" href="/vi-vn/promotions">
+                    <span class="betfont icon-promotions btn-block visible-xs"></span>Khuyến Mãi
+                </a>
+            </li><!-- end ngRepeat: prod in availableProds --><li class="nav-item nav-item-mobile lnk-applications" ng-repeat="prod in availableProds" ng-class="{ active : indexMenu(prod.name), maintenance : prod.isMaintenance == true}">
+                <a ng-href="/vi-vn/applications" data-index="navApplicationRoot" class="ng-binding" href="/vi-vn/applications">
+                    <span class="betfont icon-applications btn-block visible-xs"></span>Ứng Dụng
+                </a>
+            </li><!-- end ngRepeat: prod in availableProds -->
+        </ul>
+    </div>
+</nav></header>
+</body>
+</html>

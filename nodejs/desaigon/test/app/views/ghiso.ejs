@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<link rel="stylesheet" href="../ui.css">
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+$(function(){				
+    $('#mlogin').click(function(e){
+        e.preventDefault();
+        let data = {};
+        data.logusername = $('#mlogusername').val();
+        data.logpassword =$('#mlogpassword').val();
+        
+        $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            url: 'http://localhost:3000/ghiso',						
+            success: function(data){
+                console.log(data)
+                if(data.redirect==='/'){
+                    window.location=data.redirect
+                }else{
+                    $('#notice').html(data)
+                }
+                
+            }
+        });
+    });				
+});
+        
+</script>
+<body>
+    <% include header %>
+    <div class="display-none">
+        <div id='dongcuoc'><%=dongcuoc%></div>
+        <div id="gettentinh"></div>
+        <div id="gettencuoc"></div>
+    </div>
+    
+    <div class="display-flex" style="padding: 0 2% 0 2%">
+        <div><button class="button-small" style="border-radius:6px;">Luật chơi</button ></div>
+        <div><button class="button-small" style="border-radius:6px;">Vé Cược</button ></div>
+    </div>
+
+    <div class="tab">
+        <h5 class="tablinks"  onclick="openMien('mn')">Miền Nam</h5>
+        <h5 class="tablinks" onclick="openMien('mt')">Miền Trung</h5>
+        <h5 class="tablinks" onclick="openMien('mb')">Miền Bắc</h5>
+    </div>
+          
+          <!-- Tab content -->
+        <div id="mn" class="tabcontent" >
+        <div id='contentmn'>
+            <div class="alert alert-success"><b>Đang nhận cược MIỀN NAM </br><span class="alert-success-big"><%=ngaymn%></span></b></div>
+            <div class="card">
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Đánh Lô</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Lô 2 con</h6> 
+                            <button class="chon" onclick="openbox(1,1)">14/80</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Lô 3 con</h6> 
+                            <button class="chon" onclick="openbox(2,1)">14/714</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Đầu Đuôi</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Số Đầu</h6> 
+                            <button class="chon" onclick="openbox(3,1)">1/85</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Số Đuôi</h6> 
+                            <button class="chon" onclick="openbox(4,1)">1/85</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Xỉu Chủ</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Xỉu Chủ Đầu</h6> 
+                            <button class="chon" onclick="openbox(5,1)">1/700</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Xỉu Chủ Đặc Biệt</h6> 
+                            <button class="chon" onclick="openbox(6,1)">1/700</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Lô Đá</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Đá 2 con</h6> 
+                            <button class="chon" onclick="openbox(7,1)">16/400</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Đá vòng 3 con (3 vòng)</h6> 
+                            <button class="chon" onclick="openbox(8,1)">16/400</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Đá vòng 4 con (6 vòng)</h6> 
+                            <button class="chon" onclick="openbox(9,1)">16/400</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Đá vòng 5 con (10 vòng)</h6> 
+                            <button class="chon" onclick="openbox(10,1)">16/400</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Lô Xiên</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Xiên 2</h6> 
+                            <button class="chon" onclick="openbox(11,1)">16/430</button>
+                        </div>
+
+                        <div class="display-flex">
+                            <h6>Xiên 3</h6> 
+                            <button class="chon" onclick="openbox(12,1)">16/2.400</button>
+                        </div>
+
+                        <div class="display-flex">
+                            <h6>Xiên 4</h6> 
+                            <button class="chon" onclick="openbox(13,1)">16/12.000</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Tài Xỉu - Chẵn Lẻ</h6>
+                    </div>
+                    <div class='card-content'>
+
+                        <div class="display-flex">
+                            <div onclick="openbox(14,1)" class="tx">
+                                <h6>Tài</h6> 
+                                <b>1.95
+                                </b>
+                            </div>
+                            <div onclick="openbox(15,1)" class="tx">
+                                <h6>Xỉu</h6> 
+                                <b>1.95
+                                </b>
+                            </div>
+                            <div onclick="openbox(16,1)" class="tx">
+                                <h6>Chẵn</h6> 
+                                <b>1.95
+                                </b>
+                            </div>
+                            <div onclick="openbox(17,1)" class="tx">
+                                <h6>Lẻ</h6> 
+                                <b>1.95
+                                </b>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> 
+        </div>
+          
+        <div id="mt" class="tabcontent" >
+        <div id='contentmt'>
+            <div class="alert alert-success"><b>Đang nhận cược MIỀN TRUNG </br><span class="alert-success-big"><%=ngaymt%></span></b></div>
+             <div class="card">
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Đánh Lô</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Lô 2 con</h6> 
+                            <button class="chon" onclick="openbox(1,2)">14/80</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Lô 3 con</h6> 
+                            <button class="chon" onclick="openbox(2,2)">14/714</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Đầu Đuôi</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Số Đầu</h6> 
+                            <button class="chon" onclick="openbox(3,2)">1/85</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Số Đuôi</h6> 
+                            <button class="chon" onclick="openbox(4,2)">1/85</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Xỉu Chủ</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Xỉu Chủ Đầu</h6> 
+                            <button class="chon" onclick="openbox(5,2)">1/700</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Xỉu Chủ Đặc Biệt</h6> 
+                            <button class="chon" onclick="openbox(6,2)">1/700</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Lô Đá</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Đá 2 con</h6> 
+                            <button class="chon" onclick="openbox(7,2)">16/400</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Đá vòng 3 con (3 vòng)</h6> 
+                            <button class="chon" onclick="openbox(8,2)">16/400</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Đá vòng 4 con (6 vòng)</h6> 
+                            <button class="chon" onclick="openbox(9,2)">16/400</button>
+                        </div>
+                        <div class="display-flex">
+                            <h6>Đá vòng 5 con (10 vòng)</h6> 
+                            <button class="chon" onclick="openbox(10,2)">16/400</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Lô Xiên</h6>
+                    </div>
+                    <div class='card-content'>
+                        <div class="display-flex">
+                            <h6>Xiên 2</h6> 
+                            <button class="chon" onclick="openbox(11,2)">16/430</button>
+                        </div>
+
+                        <div class="display-flex">
+                            <h6>Xiên 3</h6> 
+                            <button class="chon" onclick="openbox(12,2)">16/2.400</button>
+                        </div>
+
+                        <div class="display-flex">
+                            <h6>Xiên 4</h6> 
+                            <button class="chon" onclick="openbox(13,2)">16/12.000</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="card1">
+                    <div class="card-title">
+                        <h6>Tài Xỉu - Chẵn Lẻ</h6>
+                    </div>
+                    <div class='card-content'>
+
+                        <div class="display-flex">
+                            <div onclick="openbox(14,2)" class="tx">
+                                <h6>Tài</h6> 
+                                <b>1.95
+                                </b>
+                            </div>
+                            <div onclick="openbox(15,2)" class="tx">
+                                <h6>Xỉu</h6> 
+                                <b>1.95
+                                </b>
+                            </div>
+                            <div onclick="openbox(16,2)" class="tx">
+                                <h6>Chẵn</h6> 
+                                <b>1.95
+                                </b>
+                            </div>
+                            <div onclick="openbox(17,2)" class="tx">
+                                <h6>Lẻ</h6> 
+                                <b>1.95
+                                </b>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> 
+        </div>
+          
+        <div id="mb" class="tabcontent" >
+        <div id='contentmb'>
+        <div class="alert alert-success"><b>Đang nhận cược MIỀN BẮC </br><span class="alert-success-big"><%=ngaymb%></span></b></div>
+        <div class="card">
+            <div class="card1">
+                <div class="card-title">
+                    <h6>Đánh Lô</h6>
+                </div>
+                <div class='card-content'>
+                    <div class="display-flex">
+                        <h6>Lô 2 con</h6> 
+                        <button class="chon" onclick="openbox(1,3)">27/105</button>
+                    </div>
+                    <div class="display-flex">
+                        <h6>Lô 3 con</h6> 
+                        <button class="chon" onclick="openbox(2,3)">27/950</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card1">
+                <div class="card-title">
+                    <h6>Đầu Đuôi</h6>
+                </div>
+                <div class='card-content'>
+                    <div class="display-flex">
+                        <h6>Đề Đầu</h6> 
+                        <button class="chon" onclick="openbox(3,3)">4/85</button>
+                    </div>
+                    <div class="display-flex">
+                        <h6>Đề Đuôi</h6> 
+                        <button class="chon" onclick="openbox(4,3)">1/85</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card1">
+                <div class="card-title">
+                    <h6>3 Càng</h6>
+                </div>
+                <div class='card-content'>
+                    <div class="display-flex">
+                        <h6>3 Càng Đầu</h6> 
+                        <button class="chon" onclick="openbox(5,3)">3/700</button>
+                    </div>
+                    <div class="display-flex">
+                        <h6>3 Càng Đặc Biệt</h6> 
+                        <button class="chon" onclick="openbox(6,3)">1/700</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card1">
+                <div class="card-title">
+                    <h6>Lô Đá</h6>
+                </div>
+                <div class='card-content'>
+                    <div class="display-flex">
+                        <h6>Đá 2 con</h6> 
+                        <button class="chon" onclick="openbox(7,3)">27/350</button>
+                    </div>
+                    <div class="display-flex">
+                        <h6>Đá vòng 3 con (3 vòng)</h6> 
+                        <button class="chon" onclick="openbox(8,3)">27/350</button>
+                    </div>
+                    <div class="display-flex">
+                        <h6>Đá vòng 4 con (6 vòng)</h6> 
+                        <button class="chon" onclick="openbox(9,3)">27/350</button>
+                    </div>
+                    <div class="display-flex">
+                        <h6>Đá vòng 5 con (10 vòng)</h6> 
+                        <button class="chon" onclick="openbox(10,3)">27/350</button>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="card1">
+                <div class="card-title">
+                    <h6>Lô Xiên</h6>
+                </div>
+                <div class='card-content'>
+                    <div class="display-flex">
+                        <h6>Xiên 2</h6> 
+                        <button class="chon" onclick="openbox(11,3)">27/370</button>
+                    </div>
+
+                    <div class="display-flex">
+                        <h6>Xiên 3</h6> 
+                        <button class="chon" onclick="openbox(12,3)">27/1.400</button>
+                    </div>
+
+                    <div class="display-flex">
+                        <h6>Xiên 4</h6> 
+                        <button class="chon" onclick="openbox(13,3)">27/4.200</button>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="card1">
+                <div class="card-title">
+                    <h6>Tài Xỉu - Chẵn Lẻ</h6>
+                </div>
+                <div class='card-content'>
+
+                    <div class="display-flex">
+                        <div onclick="openbox(14,3)" class="tx">
+                            <h6>Tài</h6> 
+                            <b>1.95
+                            </b>
+                        </div>
+                        <div onclick="openbox(15,3)" class="tx">
+                            <h6>Xỉu</h6> 
+                            <b>1.95
+                            </b>
+                        </div>
+                        <div onclick="openbox(16,3)" class="tx">
+                            <h6>Chẵn</h6> 
+                            <b>1.95
+                            </b>
+                        </div>
+                        <div onclick="openbox(17,3)" class="tx">
+                            <h6>Lẻ</h6> 
+                            <b>1.95
+                            </b>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> 
+        
+        </div>
+        
+          <% include footer %>
+        
+    
+    <div id='box' class="container display-none">
+        <div class="modal-mask1">
+            <div class="modal1">
+                <div class="modal-head">
+                    <span><strong class='modal-title'>Vé Cược </strong></span><span class="close" onclick="closebox(),hidephin(),tinhtien()" style="font-size: 2.5rem;padding: 0 10px;overflow: hidden;">&times;</span>
+                    <p class="ba"><span class="phay"><%= ba%></span> VND</p>
+                </div>
+                <div class="modal-body">
+                    <div><b style="font-size:1.5rem"><span id='mien'> Miền - </span> <span id='name'> Tên Cược</span> </b></div>
+
+                    <div id="tinhmn">
+                        <ul>
+                        <% tenmn.forEach(function(v,i) { %>
+                            <li>
+                                <input onchange="tinhtien()" type="checkbox" id="mn<%=i%>" value="<%=i%>" name="checkmn">
+                                <label for="mn<%=i%>"><%=v%></label>
+                            </li>       
+                        <% }); %>
+                        </ul>
+                    </div>
+                    <div id="tinhmt">
+                        <ul>
+                        <% tenmt.forEach(function(v,i) { %>
+                            <li>
+                                <input onchange="tinhtien()" type="checkbox" id="mt<%=i%>" value="<%=i%>" name="checkmt">
+                                <label for="mt<%=i%>"><%=v%></label>
+                            </li>       
+                        <% }); %>
+                        </ul>
+                    </div>
+                    
+
+                    
+                    <div class="so"><input type="number" name="" id="a" class="so" placeholder="00" onkeyup="change('a',2)"></div>
+                    <div class="so"><input type="number" name="" id="b" class="so" placeholder="000" onkeyup="change('b',3)"></div>
+                    <div class="so">
+                        <input type="number" name="" id="c1" class="so" placeholder="00" onkeyup="change('c1',2)">
+                        <input type="number" name="" id="c2" class="so" placeholder="00" onkeyup="change('c2',2)">
+                        <input type="number" name="" id="c3" class="so" placeholder="00" onkeyup="change('c3',2)">
+                        <input type="number" name="" id="c4" class="so" placeholder="00" onkeyup="change('c4',2)">
+                        <input type="number" name="" id="c5" class="so" placeholder="00" onkeyup="change('c5',2)">
+                    </div>
+                   
+                    <div class="clear-fix">
+                        <div style="position: relative;width:50%;">
+                            <input type="number" name="money" id="money" class="float-left phay" onkeyup="tinhtien()" onfocus="showphin()" placeholder="Tiền Cược" style="text-align: right;padding-right:60px;font-size: 1rem;border: none;" >
+                            <span class="close" onclick="xoaphin(),tinhtien()" style="position: absolute;right:0;font-size: 2.5rem;padding: 0 10px;line-height: 42px;">&times;</span>
+                        </div>
+                    </div>
+                    
+                    <div class="clear-fix">
+                        <p class="float-left" style="width:50%;padding: 10px;text-align: left;margin-bottom: 0">Tổng cược <span id='tiencuoc' class="phay"> 0 </span>
+                        <p class="float-right" style="width:50%;padding: 10px;text-align: right;margin-bottom: 0">Thắng <a id='tienthang' class="phay"> 0 </a></p>
+                    </div>
+                    
+                    <div id="phin" class="display-none">
+                    <div class="row phin" style='margin: 0'>
+                        <div class="phin1 col-xs-4 col-sm-4 col-md-2" onclick="phin(1000),tinhtien()"><div class="phin2"><b>+1K</b></div></div>
+                        <div class="phin1 col-xs-4 col-sm-4 col-md-2" onclick="phin(2000),tinhtien()"><div class="phin2"><b>+2K</b></div></div>
+                        <div class="phin1 col-xs-4 col-sm-4 col-md-2" onclick="phin(5000),tinhtien()"><div class="phin2"><b>+5K</b></div></div>
+                        <div class="phin1 col-xs-4 col-sm-4 col-md-2" onclick="phin(10000),tinhtien()"><div class="phin2"><b>+10K</b></div></div>
+                        <div class="phin1 col-xs-4 col-sm-4 col-md-2" onclick="phin(50000),tinhtien()"><div class="phin2"><b>+50K</b></div></div>
+                        <div class="phin1 col-xs-4 col-sm-4 col-md-2" onclick="phin(100000),tinhtien()"><div class="phin2"><b>+100K</b></div></div>
+                    </div>
+                    </div>
+                    
+
+                </div>
+                
+                <div class="modal-foot">
+                    <div id='ce' class="alert alert-danger display-none"><b id="e" ></b></b></div>
+                    <div id='cr' class="alert alert-ok display-none"><b id="r" ></b></div>
+                    <button class="button-send" id='send' onclick="send()">Đặt Cược</button>
+                    <button class="button-login display-none" id='ok' onclick="closebox()">OK</button>
+                </div>
+              
+                
+            </form>
+            </div>
+        </div>
+            
+    </div>
+   
+    <% ve.forEach(function(v,i) { %>
+        <p><%=v%></p>
+    <% }); %>
+</body>
+
+<script>
+function send(){
+    let e=0;		
+    let data = {};   
+    data.tentinh=$('#gettentinh').html()
+    data.tencuoc=$('#gettencuoc').html()
+    data.so='00'
+    data.matinh=[]
+    data.tiencuoc=Math.abs($('#money').val())
+    switch(data.tentinh){
+        case '1':{
+            let a=document.getElementsByName('checkmn')
+            for (let i = 0; i < a.length; i++){if (a[i].checked === true){data.matinh.push(i)}}
+        };break;
+        case '2':{
+            let a=document.getElementsByName('checkmt')
+            for (let i = 0; i < a.length; i++){if (a[i].checked === true){data.matinh.push(i)}}            
+        };break;
+        case '3':{data.matinh.push('0')}
+    }
+    if(data.matinh.length==0){e=1}
+    switch(data.tencuoc){
+        case '1':{
+            if($('#a').val()===''){
+                e=2
+            }else{
+                data.so=$('#a').val()
+            }
+        };break;
+        case '2':{
+            if($('#b').val()===''){
+                e=2
+            }else{
+                data.so=$('#b').val()
+            }
+        };break;
+        case '3':{
+            if($('#a').val()===''){
+                e=2
+            }else{
+                data.so=$('#a').val()
+            }
+        };break;
+        case '4':{
+            if($('#a').val()===''){
+                e=2
+            }else{
+                data.so=$('#a').val()
+            }
+        };break;
+        case '5':{
+            if($('#b').val()===''){
+                e=2
+            }else{
+                data.so=$('#b').val()
+            }
+        };break;
+        case '6':{
+            if($('#b').val()===''){
+                e=2
+            }else{
+                data.so=$('#b').val()
+            }
+        };break;
+        case '7':{
+            if($('#c1').val()==='' || $('#c2').val()===''){
+                e=2
+            }else{
+                data.so=$('#c1').val()+$('#c2').val()   
+            }
+        };break;
+        case '8':{
+            if($('#c1').val()==='' || $('#c2').val()==='' || $('#c3').val()===''){
+                e=2
+            }else{
+                data.so=$('#c1').val()+$('#c2').val()+$('#c3').val()
+            }
+        };break;
+        case '9':{
+            if($('#c1').val()==='' || $('#c2').val()==='' || $('#c3').val()==='' || $('#c4').val()===''){
+                e=2
+            }else{
+                data.so=$('#c1').val()+$('#c2').val()+$('#c3').val()+$('#c4').val()
+            }
+        };break;
+        case '10':{
+            if($('#c1').val()==='' || $('#c2').val()==='' || $('#c3').val()==='' || $('#c4').val()==='' || $('#c5').val()===''){
+                e=2
+            }else{
+                data.so=$('#c1').val()+$('#c2').val()+$('#c3').val()+$('#c4').val()+$('#c5').val()
+            }
+        };break;
+        case '11':{
+            if($('#c1').val()==='' || $('#c2').val()===''){
+                e=2
+            }else{
+                data.so=$('#c1').val()+$('#c2').val()   
+            }
+        };break;
+        case '12':{
+            if($('#c1').val()==='' || $('#c2').val()==='' || $('#c3').val()===''){
+                e=2
+            }else{
+                data.so=$('#c1').val()+$('#c2').val()+$('#c3').val()
+            }
+        };break;
+        case '13':{
+            if($('#c1').val()==='' || $('#c2').val()==='' || $('#c3').val()==='' || $('#c4').val()===''){
+                e=2
+            }else{
+                data.so=$('#c1').val()+$('#c2').val()+$('#c3').val()+$('#c4').val()
+            }
+        };break;
+    }
+    function so(value){
+        let b=true
+    let a=/\d{2}/g
+    ar=value.match(a)
+    for(let i=0;i<ar.length;i++){
+      let j=1
+      while(j<ar.length){
+        if(ar[i]==ar[i+j]){
+          b=false
+        }
+        j++
+      }
+    }
+    return b
+    }
+    if(so(data.so)===false){e=5}
+    if(data.tiencuoc===''){e=3}
+    if(data.tiencuoc<1000 || data.tiencuoc>1000000){e=4}
+    if(e===0){
+        $('#ce').hide()
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        url: 'http://localhost:3000/ghiso',						
+        success: function(data){
+            if(data.e){$('#e').html(data.e);$('#ce').show()}
+            if(data.r){$('#r').html(data.r);$('#cr').show();$('#ok').show();$('#send').hide()}
+            if(data.bal){
+                let re=/\d{1,3}(?=(\d{3})+(?!\d))/g
+                let e=data.bal.toString()
+                let d=e.replace(re,'$&.')
+                let a=document.getElementsByClassName('ba')
+                for(let i in a){
+                    
+                    a[i].innerHTML=d
+                }
+            }
+        }
+    })	 
+    }
+    else{
+        $('#ce').hide()
+        switch(e){
+            case 1:{$('#e').html('Vui lòng chọn tỉnh.')};break;
+            case 2:{$('#e').html('Vui lòng nhập số cần đánh.')};break;
+            case 3:{$('#e').html('Vui lòng nhập tiền cược.')};break;
+            case 4:{
+                if(data.tencuoc==='1'  || data.tencuoc==='3'  || data.tencuoc==='4'){
+                    $('#e').html('Vui lòng nhập tiền cược tối thiểu là 1.000đ và tối đa là 2.000.000đ đối với cược này.')
+                }else if(data.tencuoc==='14'|| data.tencuoc==='15'  || data.tencuoc==='16'  || data.tencuoc==='17'){
+                    $('#e').html('Vui lòng nhập tiền cược tối thiểu là 1.000đ và tối đa là 45.000.000đ đối với cược này.')
+                }else{
+                    $('#e').html('Vui lòng nhập tiền cược tối thiểu là 1.000đ và tối đa là 500.000đ đối với cược này.')
+                }
+            };break;
+            case 5:{$('#e').html('Vui lòng không nhập trùng Số trong cược này.')};break;
+        }
+        $('#ce').show()
+    }
+}
+function phay(a='phay'){
+    let re=/\d{1,3}(?=(\d{3})+(?!\d))/g
+    let c = document.getElementsByClassName(a);
+    for (i = 0; i < c.length; i++) {
+        let d=c[i].innerHTML.replace(re, '$&.');
+    c[i].innerHTML = d
+    }
+       
+}
+phay()
+
+function tinhtien(){
+    let b=0//so luong dai
+    let c=0//tong cuoc
+    let d=$('#money').val()//tien
+    if(d<0){d=Math.abs(d);$('#money').val(d)}
+    let e=0
+    let f=0
+    let g=0
+    switch($('#gettentinh').html()){
+        case '1':{
+            let a=document.getElementsByName('checkmn')
+            if(a.length==0){$('#tiencuoc').html('');$('#tienthang').html('')}
+            for (let i = 0; i < a.length; i++){if (a[i].checked === true){b++}}
+        };break
+        case '2':{
+            let a=document.getElementsByName('checkmt')
+            for (let i = 0; i < a.length; i++){if (a[i].checked === true){b++}}
+        };break
+        default :{b=1}
+    }
+    if($('#gettentinh').html()!='3'){
+        switch(b){
+            case 1:{e=400;f=2400;g=12000};break
+            case 2:{e=230;f=600;g=1600};break
+            case 3:{e=180;f=270;g=450};break
+            case 4:{e=160;f=190;g=250};break
+        }
+       
+    }
+    switch($('#gettencuoc').html()){
+        case '1':{if($('#gettentinh').html()!='3'){c=80*b*d;$('#tiencuoc').html(b*d*14);$('#tienthang').html(c.toFixed(0))}else{c=105*b*d;$('#tiencuoc').html(b*d*27);$('#tienthang').html(c.toFixed(0))}};break;
+        case '2':{if($('#gettentinh').html()!='3'){c=714*b*d;$('#tiencuoc').html(b*d*14);$('#tienthang').html(c.toFixed(0))}else{c=950*b*d;$('#tiencuoc').html(b*d*27);$('#tienthang').html(c.toFixed(0))}};break;
+        case '3':{if($('#gettentinh').html()!='3'){c=85*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}else{c=85*b*d;$('#tiencuoc').html(b*d*4);$('#tienthang').html(c.toFixed(0))}};break;
+        case '4':{if($('#gettentinh').html()!='3'){c=85*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}else{c=85*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}};break;
+        case '5':{if($('#gettentinh').html()!='3'){c=700*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}else{c=700*b*d;$('#tiencuoc').html(b*d*3);$('#tienthang').html(c.toFixed(0))}};break;
+        case '6':{if($('#gettentinh').html()!='3'){c=700*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}else{c=700*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}};break;
+
+        case '7':{if($('#gettentinh').html()!='3'){c=d*e;$('#tiencuoc').html(b*d*16);$('#tienthang').html(c.toFixed(0))}else{c=320*b*d;$('#tiencuoc').html(b*d*27);$('#tienthang').html(c.toFixed(0))}};break;
+        case '8':{if($('#gettentinh').html()!='3'){c=d*e;$('#tiencuoc').html(b*d*16*3+'(3vòng)');$('#tienthang').html(c.toFixed(0)+'/vòng')}else{c=320*b*d;$('#tiencuoc').html(b*d*27*3+'(3vòng)');$('#tienthang').html(c.toFixed(0)+'/vòng')}};break;
+        case '9':{if($('#gettentinh').html()!='3'){c=d*e;$('#tiencuoc').html(b*d*16*5+'(5vòng)');$('#tienthang').html(c.toFixed(0)+'/vòng')}else{c=320*b*d;$('#tiencuoc').html(b*d*27*5+'(5vòng)');$('#tienthang').html(c.toFixed(0)+'/vòng')}};break;
+        case '10':{if($('#gettentinh').html()!='3'){c=d*e;$('#tiencuoc').html(b*d*16*10+'(10vòng)');$('#tienthang').html(c.toFixed(0)+'/vòng')}else{c=320*b*d;$('#tiencuoc').html(b*d*27*10+'(10vòng)');$('#tienthang').html(c.toFixed(0)+'/vòng')}};break;
+
+        case '11':{if($('#gettentinh').html()!='3'){c=e*d;$('#tiencuoc').html(b*d*16);$('#tienthang').html(c.toFixed(0))}else{c=320*b*d;$('#tiencuoc').html(b*d*27);$('#tienthang').html(c.toFixed(0))}};break;
+        case '12':{if($('#gettentinh').html()!='3'){c=f*d;$('#tiencuoc').html(b*d*16);$('#tienthang').html(c.toFixed(0))}else{c=1400*b*d;$('#tiencuoc').html(b*d*27);$('#tienthang').html(c.toFixed(0))}};break;
+        case '13':{if($('#gettentinh').html()!='3'){c=g*d;$('#tiencuoc').html(b*d*16);$('#tienthang').html(c.toFixed(0))}else{c=4200*b*d;$('#tiencuoc').html(b*d*27);$('#tienthang').html(c.toFixed(0))}};break;
+
+        case '14':{if($('#gettentinh').html()!='3'){c=0.95*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}else{c=0.95*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}};break;
+        case '15':{if($('#gettentinh').html()!='3'){c=0.95*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}else{c=0.95*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}};break;
+        case '16':{if($('#gettentinh').html()!='3'){c=0.95*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}else{c=0.95*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}};break;
+        case '17':{if($('#gettentinh').html()!='3'){c=0.95*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}else{c=0.95*b*d;$('#tiencuoc').html(b*d);$('#tienthang').html(c.toFixed(0))}};break;
+    }
+    phay()
+}
+function phin(a){
+    a=Math.abs(a)
+    let m=document.getElementById('money').value
+    if(m == ''){
+        $('#money').val(a)
+    }else{
+        let b=parseInt(m)
+        $('#money').val(a+b)
+    }
+}
+function showphin(){
+    $('#phin').show()
+}
+function hidephin(){
+    $('#phin').hide()
+}
+function xoaphin(){
+    $('#money').val('')
+}
+function change(a,b){
+let c=$('#'+a).val()
+if(c.length<b){c='000'+c}
+if(c.length>b){$('#'+a).val(c.slice(-b))}}
+function openMien(a){
+    if($('#dongcuoc').html()==1){
+        $('#contentmn').html('<div class="alert alert-danger">Hết giờ nhận cược Miền Nam, vui lòng trở lại sau 17h để đặt cược cho ngày mai</div>')
+    }
+    if($('#dongcuoc').html()==2){
+        $('#contentmt').html('<div class="alert alert-danger">Hết giờ nhận cược Miền Trung, vui lòng trở lại sau 18h để đặt cược cho ngày mai</div>')
+    }
+    if($('#dongcuoc').html()==3){
+        $('#contentmb').html('<div class="alert alert-danger">Hết giờ nhận cược Miền Bắc, vui lòng trở lại sau 19h để đặt cược cho ngày mai</div>')
+    }
+    
+    // Declare all variables
+    var i, tabcontent, tablinks;
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+    }
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(a).style.display = "block";
+    switch(a){
+    case 'mn':tablinks[0].className += ' active';break;
+    case 'mt':tablinks[1].className += ' active';break;
+    case 'mb':tablinks[2].className += ' active';break;
+    }
+} 
+openMien('mn')
+$('#a').hide();$('#b').hide();$('#c1').hide();$('#c2').hide();$('#c3').hide();$('#c4').hide();$('#c5').hide()
+function openbox(a,b){
+    let checkmn=document.getElementsByName('checkmn')
+    let checkmt=document.getElementsByName('checkmt')
+    checkmn[0].checked=true
+    checkmt[0].checked=true
+    $('#tiencuoc').html('0');$('#tienthang').html('0')
+    switch(b){
+        case 1:{
+            $('#mien').html('Miền Nam - ')
+            $('#tinhmt').hide()
+            $('#tinhmn').show()
+            $('#gettentinh').html('1')
+        };break;
+        case 2:{
+            $('#mien').html('Miền Trung - ')
+            $('#tinhmn').hide()
+            $('#tinhmt').show()
+            $('#gettentinh').html('2')
+        };break;
+        case 3:{
+            $('#mien').html('Miền Bắc - ')
+            $('#tinhmn').hide()
+            $('#tinhmt').hide()
+            $('#gettentinh').html('3')
+        };break;
+    }
+    switch(a){
+        case 1:{
+            $('#gettencuoc').html('1');
+            if(b==3){$('#name').html('Lô 2 con @ 105');}else{$('#name').html('Lô 2 con @ 80');}
+            $('#a').show()};break;
+
+        case 2:{$('#gettencuoc').html('2');
+            if(b==3){$('#name').html('Lô 3 con @ 950')}else{$('#name').html('Lô 3 con @ 714');}
+            $('#b').show()};break;
+
+        case 3:{$('#gettencuoc').html('3');
+            $('#name').html('Đầu @ 85');
+            $('#a').show()};break;
+
+        case 4:{$('#gettencuoc').html('4');
+            $('#name').html('Đuôi @ 85');
+            $('#a').show()};break;
+
+        case 5:{$('#gettencuoc').html('5');
+            if(b==3){$('#name').html('3 Càng Đầu @ 700')}else{$('#name').html('Xỉu Chủ Đầu @ 700');}
+            $('#b').show()};break;
+
+        case 6:{$('#gettencuoc').html('6');
+            if(b==3){$('#name').html('3 Càng Đặc Biệt @ 700')}else{$('#name').html('Xỉu Chủ Đặc Biệt @ 700');}
+            $('#b').show()};break;
+
+        case 7:{$('#gettencuoc').html('7');
+            if(b==3){$('#name').html('Đá 2 con @ 350/vòng')}else{$('#name').html('Đá 2 con @ 400/vòng');}
+            $('#c1').show()
+            $('#c2').show()};break;
+
+        case 8:{$('#gettencuoc').html('8');
+            if(b==3){$('#name').html('Đá vòng 3 con @ 350/vòng')}else{$('#name').html('Đá vòng 3 con @ 400/vòng');}
+            $('#c1').show()
+            $('#c2').show()
+            $('#c3').show()};break;
+
+        case 9:{$('#gettencuoc').html('9');
+            if(b==3){$('#name').html('Đá vòng 4 con @ 350/vòng')}else{$('#name').html('Đá vòng 4 con @ 400/vòng');}
+            $('#c1').show()
+            $('#c2').show()
+            $('#c3').show()
+            $('#c4').show()};break;
+
+        case 10:{$('#gettencuoc').html('10');
+            if(b==3){$('#name').html('Đá vòng 5 con @ 350/vòng')}else{$('#name').html('Đá vòng 5 con @ 400/vòng');}
+            $('#c1').show()
+            $('#c2').show()
+            $('#c3').show()
+            $('#c4').show()
+            $('#c5').show()};break;
+
+        case 11:{$('#gettencuoc').html('11');
+            if(b==3){$('#name').html('Xiên 2 @ 370')}else{$('#name').html('Xiên 2 @ 430');}
+            $('#c1').show()
+            $('#c2').show()};break;
+
+        case 12:{$('#gettencuoc').html('12');
+            if(b==3){$('#name').html('Xiên 3 @ 1.400')}else{$('#name').html('Xiên 3 @ 2.400');}
+            $('#c1').show()
+            $('#c2').show()
+            $('#c3').show()};break;
+
+        case 13:{$('#gettencuoc').html('13');
+            if(b==3){$('#name').html('Xiên 4 @ 4.200')}else{$('#name').html('Xiên 4 @ 12.000');}
+            $('#c1').show()
+            $('#c2').show()
+            $('#c3').show()
+            $('#c4').show()};break;
+
+        case 14:{$('#gettencuoc').html('14');
+            $('#name').html('Tài @ 1.95');
+            };break;
+
+        case 15:{$('#gettencuoc').html('15');
+            $('#name').html('Xỉu @ 1.95');
+            };break;
+
+        case 16:{$('#gettencuoc').html('16');
+            $('#name').html('Chẵn @ 1.95');
+            };break;
+
+        case 17:{$('#gettencuoc').html('17');
+            $('#name').html('Lẻ @ 1.95');
+            };break;
+
+        
+    }
+    document.getElementById('box').style.display = "block";
+}
+function closebox(){
+    $('#a').hide();$('#b').hide();$('#c1').hide();$('#c2').hide();$('#c3').hide();$('#c4').hide();$('#c5').hide()
+    $('.so').val('')
+    $('#money').val('')
+    $('#ce').hide()
+    $('#cr').hide()
+    $('#ok').hide()
+    $('#send').show()
+    document.getElementById('box').style.display = "none";
+    let checkmn=document.getElementsByName('checkmn')
+    let checkmt=document.getElementsByName('checkmt')
+    for(let i=0;i<checkmn.length;i++){
+        checkmn[i].checked=false
+    }
+    for(let i=0;i<checkmt.length;i++){
+        checkmt[i].checked=false
+    }
+    
+}
+        
+        
+</script>
+
+    
+</html>

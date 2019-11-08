@@ -1,0 +1,191 @@
+// HEADER
+// ==============================
+
+$header-height: 80px !default;
+$header-title-size: 50px !default;
+$header-subtitle-size: 18px !default;
+$header-disclaimer-size: 12px !default;
+$header-bg-color: #2b2b2b !default;
+$header-text-color: $color-o !default;
+$header-control-size: 50px !default;
+
+header,
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    height: $header-height;
+    background: $header-bg-color;
+    font-family: Lato,Helvetica,Tahoma,sans-serif;
+
+    .title {
+        font-size: $header-title-size;
+        line-height: $header-title-size;
+        font-weight: 900;
+        color: $header-text-color;
+        text-align: center;
+
+        @include breakpoint-min($bp-medium) {
+            font-size: $header-title-size * 1.2;
+            line-height: $header-title-size * 1.2;
+        }
+    }
+
+    .info{
+    
+        
+        a{
+            padding: 20px;
+            font-size:2rem;
+            display: inline-block;
+            color: #b4b4b4;
+         
+            .ba{
+                padding: 0 30px 0 10px;
+                line-height: 0.5em;
+                color:#84b653;
+                font-size:0.8em;
+            }
+        }
+    }
+
+    .cpucontrol{
+        height: 50px;
+        padding-top: 0px;
+        width: 600px;
+
+        .line{
+            
+            input{
+            
+                color: #000;
+                
+                font-family: Lato,Helvetica,Tahoma,sans-serif;
+                letter-spacing: 1px;
+                font-size:1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+                text-indent: 0px;
+                text-shadow: none;
+                display: inline-block;
+                width: 24%;
+                height: 40px;
+                border-radius: 20px;
+                border: none;
+                text-transform:none;
+                &:focus{
+                    border: none
+                }
+                &::placeholder {
+                    color: $input-placeholder-color;
+                }
+            }
+            input[type="text"],input[type='password']{
+                background-color:rgb(232,234,237);
+                font-weight: 500;
+            }
+            input[type='button']{
+                font-weight: 900;
+                font-size:1.3rem;
+                font-family: Lato,Helvetica,Tahoma,sans-serif;
+                letter-spacing: 1px;
+                text-decoration: none;
+                text-indent: 0px;
+                text-shadow: none;
+                color: #2b2b2b;
+                border: none
+            }
+        }
+    }
+
+    .control {
+        font-size: $header-control-size;
+        display: block;
+        position: relative;
+        cursor: pointer;
+        padding-right: 25px;
+
+        div {
+            width: 35px;
+            height: 5px;
+            background-color: #b4b4b4;
+            margin: 6px 0;
+        }
+        &:hover{
+            div {background-color: #fff;}
+        }
+        
+    }
+        
+    .subtitle {
+        font-size: $header-subtitle-size;
+        line-height: 26px;
+        font-weight: 300;
+        color: $header-text-color;
+        text-align: center;
+
+        @include breakpoint-min($bp-medium) {
+            font-size: $header-subtitle-size * 1.4;
+            line-height: $header-subtitle-size * 1.4;
+        }
+    }
+
+    .disclaimer {
+        font-size: 12px;
+        color: $header-text-color;
+        text-align: center;
+    }
+
+    .scroll-down {
+        opacity: 1;
+        -webkit-transition: all .5s ease-in 3s;
+        transition: all .5s ease-in 3s;
+    }
+
+    .scroll-down {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 45px;
+        left: 50%;
+        margin-left: -16px;
+        width: 32px;
+        height: 32px;
+        border: 2px solid $header-text-color;
+        border-radius: 50%;
+        animation: bounce 2s infinite 2s;
+        transition: all .2s ease-in;
+
+        &::before {
+            display: block;
+            position: relative;
+            bottom: 2px;
+            content: '';
+            transform: rotate(-45deg);
+            width: 12px;
+            height: 12px;
+            border: 2px solid $header-text-color;
+            border-width: 0px 0 2px 2px;
+        }
+    }
+
+    @keyframes bounce {
+        0%,
+        100%,
+        20%,
+        50%,
+        80% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-10px);
+        }
+        60% {
+            transform: translateY(-5px);
+        }
+    }
+
+}

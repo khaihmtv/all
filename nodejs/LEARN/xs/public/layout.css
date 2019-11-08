@@ -1,0 +1,29 @@
+body{font-family: sans-serif;}
+
+#submenu{
+    display: table;
+    width: 100%;
+    color:black;
+}
+#submenu a{
+    background-color:#e6e6e6;
+    display: table-cell;
+    margin: 100px;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 4px;
+    border: 1px solid #e6e6e6;
+    border-radius: 100px;
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+#submenu a:hover{
+    background-color: #d2d2d2;
+}
+/*#submenu a:first-child{border: none;}*/
+#submenu.twoItem a {width: 50%; }
+#submenu.threeItem a {width:33,3%; }
+#submenu.fourItem a {width:25%; }
+#submenu.hidden {display:none; }

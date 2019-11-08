@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Socket.io</title>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="jquery.js"></script>
+    <script src="xuly.js"></script>
+    <link rel="stylesheet" type="text/css" href="layout.css">
+</head>
+<body>
+<div id="wrapper">
+   <div id="login">
+        <h3>What is your name ?</h3>
+        <input type="text" id="user">
+        <input type="button" value="OK" id="ok">
+   </div>
+   <div id="chat">
+        <div id="bar">
+            <div id="head"><h2>User Online</h2></div>
+            <div id="usero"></div>
+        </div>
+        <div id="noidung">
+            <div id="tt">
+                Xin Chao
+                <b><span id="uu"></span></b>
+                <input type="button" value="Logout" id="logout">
+            </div>
+            <div id="content"></div>
+            <input type="text" id="message">
+            <input type="button" value="Chat" id="gui">
+        </div>
+   </div>
+</div>
+</body>
+</html>

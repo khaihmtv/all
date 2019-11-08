@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../ui.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script type="text/javascript">
+            $(function(){				
+                $('#mlogin').click(function(e){
+                    e.preventDefault();
+					let data = {};
+					data.logusername = $('#mlogusername').val();
+					data.logpassword =$('#mlogpassword').val();
+					
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: 'http://localhost:3000/user/login',						
+                        success: function(data){
+                            console.log(data)
+                            if(data.redirect==='/'){
+                                window.location=data.redirect
+                            }else{
+                                if(data.a){alert(data.a)}
+                                //$('#notice').html('Sai ten dang nhap hoac mat khau')
+                            }
+                            
+                        }
+                    });
+                });				
+            });
+        </script>
+</head>
+<body>
+    <% include header %>
+
+    <h4 id="notice"></h4>
+    <div class="container">
+            <form action="/user/login" method="POST">
+                <input type="text" id='mlogusername' placeholder="Tên Truy Cập" autocomplete="off" required>
+                <input type="password" id='mlogpassword' placeholder="Mật Khẩu" autocomplete="off" required>
+                <button type="submit" class="button-login" id='mlogin'>Đăng Nhập</button>
+            </form>
+            
+        </br>
+            <div class="float-right"><h3><a href="user/forgetpass">Quên Mật Khẩu</a></h3></div>
+            </br></br></br></br>
+            <h3 style="text-align:center">Bạn chưa đăng ký?</h3>
+            <button class="button-reg"><a href="http://localhost:3000/user/register">Đăng Ký</a></button>
+        </div>
+</body>
+</html>

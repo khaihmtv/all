@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+  background-color: #f1f1f1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  transition: all .3s ease;
+}
+  
+.clear:after {
+    content: " ";
+    visibility: hidden;
+    display: block; 
+    clear: both;
+}
+
+#navbar {
+  background-color: rgba(0,0,0);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: block;
+  transition: top 0.3s;
+}
+
+#left{
+  float: left;
+  display: block;
+  padding: 5px 10px 5px 10px;  
+}
+#left a{
+  text-decoration: none;
+  color: #fe9200;
+  text-align: center;
+  font-size: 40px;
+  font-weight:bold;
+}
+
+#right{
+  color: #6e6e6e;
+  float: right;
+  padding-top: 7px;
+  padding-right: 7.5px;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+}
+
+#right a:hover{
+  background-color: #ddd;
+  cursor: pointer;
+}
+#login{
+  text-decoration: none;
+  color:black;
+  background: #ff9200;
+  float: left;
+  margin-left: 8px;
+  height: 37px;
+  border-radius: 3px;
+  padding: 0 10px;
+  vertical-align: sub;
+  font-size:1.6rem;
+}
+#usermenu{
+  background: #b4b4b4;
+  padding: 0 0 0 12px;
+  font-size: 28px;
+  float: left;
+  margin-left: 8px;
+  height: 37px;
+  width: 37px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  text-align:center;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover{
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  display: flex;
+  flex-direction: row-reverse;
+  line-height: 2rem;
+  font-size: 30px;
+}
+div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+  position: absolute;
+  top:60px;
+  width: 100%;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+div.scrollmenu a:last-child{
+  position: fixed;
+  float: right;
+  right: 0;
+  background-color:  #333;
+  z-index: 3;
+  width:100px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+}
+.gradient{
+  background: linear-gradient(to right,rgba(65,65,65,0) 0%,rgba(65,65,65,0) 1%,#414141 100%);
+  z-index: 2;
+  height: 48px;
+  width: 40px;
+  float: right;
+  position: fixed;
+  right: 100px;
+  padding: 0px !important;
+  
+}
+
+div.scrollmenu a:hover {
+  background-color: #777;
+}

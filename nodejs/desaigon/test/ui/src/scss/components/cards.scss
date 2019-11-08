@@ -1,0 +1,74 @@
+// CARDS
+// ==============================
+
+$card-shadow: false !default;
+$card-title-font-size: 24px !default;
+$card-bg-color: $color-background !default;
+$card-title-color: #262626 !default;
+$card-content-color:#fff !default;
+
+.card {
+    width:100%;
+    background: $card-bg-color;
+    overflow: hidden;
+    text-align: center;
+
+
+    @if $card-shadow {
+        box-shadow: 4px 4px 12px rgba($color-gray-300, 0.5);
+    }
+    .card1{
+        width:97%;
+        padding-left:3%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+
+    .card-title h6{
+        padding: 2% 0 2% 0;
+        font-size: $card-title-font-size;
+        margin-bottom: 5px;
+        color: #fff;
+        text-align: center;
+        background-color: $card-title-color;
+    }
+
+    .card-content{
+        padding: 2%;
+        border-radius: 3px;
+        background-color:$card-content-color;
+        div{
+            display:flexbox;
+            padding: 1%;
+            border-bottom: 2px solid $color-background;
+        }
+        
+    }
+    .tx{
+        cursor:pointer;
+        width:24%;
+        background-color: rgb(221, 221, 221);
+        border-radius: 6px;
+        &:hover{
+            background-color: #ff9800;
+        }
+        b{
+            font-size: 18px;
+            font-weight: 700;
+        }
+    }
+}
+
+
+
+.card-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    list-style: none;
+    justify-content: space-around;
+
+    & > * {
+        margin-bottom: 0;
+    }
+}

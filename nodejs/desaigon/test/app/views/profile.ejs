@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){				
+            $('#changepass').click(function(e){
+                e.preventDefault();
+                let data = {};
+                data.password = $('#password').val();
+                
+                
+                $.ajax({
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    url: 'http://localhost:3000/user/profile',						
+                    success: function(data){
+                        console.log(data)
+                        if(data.redirect==='/user/profile'){
+                            alert('Đổi mật khẩu thành công')
+                            window.location=data.redirect
+                        }else{
+                            $('#notice').html('Sai ten dang nhap hoac mat khau')
+                        }
+                        
+                    }
+                });
+            });				
+        });
+
+
+        function isPassword(){
+  let re =/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]{6,})$/
+  let password=$('#password').val()
+  if(!re.test(password)){
+    $('#errorpassword').html('Tạo mật khẩu dài từ 5-16 ký tự, bao gồm chữ (a-z) và số (0-9).');
+    document.getElementById("register").disabled = true;
+  }else{
+    $('#errorpassword').html('');
+    document.getElementById("register").disabled = false;
+  }
+}
+
+function isRepassword(){
+  let password=$('#password').val()
+  let repassword=$('#repassword').val()
+  if(repassword.length>5){
+    if(password!=repassword){
+      $('#errorrepassword').html('Xác nhận mật khẩu không chính xác. Vui lòng nhập lại');
+      document.getElementById("register").disabled = true;
+    }else{
+      $('#errorrepassword').html('');
+      document.getElementById("register").disabled = false;
+    }
+  }
+  
+}
+
+$(document).ready(function() {
+    var elements = $("input, select");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].oninvalid = function(e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+                 e.target.setCustomValidity(e.target.getAttribute("requiredmsg"));
+            }
+        };
+        elements[i].oninput = function(e) {
+            e.target.setCustomValidity("");
+        };
+    }
+    $(".formchange").hide();
+    $(".changePass").click(function(){
+    $(".formchange").show();
+    $(".changePass").hide()
+    })
+})
+
+    </script>
+</head>
+<body>
+    <% include header %>
+    <div class="container">
+        <div class="">
+           <h2><%if(sex==true){%>
+                <Span>Ông </Span>
+            <%}%>
+            <%if(sex==false){%>
+                <Span>Bà </Span>
+            <%}%>
+            <%=acc%></h2>
+            
+            
+            
+
+        </div>
+        <div>
+            <form action="/user/profile" method="POST">
+                <legend>Cách xưng hô</legend>
+                <select name="sex">
+                    <option value='1'>Ông</option>
+                    <option value='0'>Bà</option>
+                </select></br>
+
+                <legend>Họ Tên Đầy Đủ</legend>
+                <%if(name==null){%>
+                    <input type="text" name='name' autocomplete="off" style="text-transform:uppercase"></br></br>
+                <%}else{%>
+                    <b><%=name%></b>
+                </br></br>
+                    <%}%>
+                
+                <legend>Tên Truy Cập</legend>
+                <b><%=acc%></b></br></br>
+
+                <legend>Email</legend>
+                <b><%=email%></b></br></br>
+
+                <legend>Số Điện Thoại</legend>
+                <%if(phone==null){%>
+                    <input type="number" name='phone' autocomplete="off"></br></br>
+                <%}else{%>
+                    <b><%=phone%></b>
+                </br></br>
+                <%}%>
+                
+                <button type="submit">CẬP NHẬT</button>
+
+            </form>
+        </br>
+        <button class="changePass" style="cursor: pointer;">Đổi mật khẩu</button>
+        </br>
+        <div class="formchange">
+            <form action="/user/profile" method="post">
+                <legend>Nhập mật khẩu mới</legend>
+                <input type="password" name='password' id="password" autocomplete="off" onblur="isPassword()" required requiredmsg="Có vẻ như Quý Khách quên điền mục này"></br>
+                <p id='errorpassword'></p>
+                <legend for="">Nhập lại mật khẩu mới</legend>
+                <input type="password" name='repassword' id="repassword" autocomplete="off" onkeyup="isRepassword()" required requiredmsg="Có vẻ như Quý Khách quên điền mục này"></br>
+                <p id='errorrepassword'></p>
+                <button type='button' id='changepass' class="button-medium" >Đổi mật khẩu</button>
+            </form> 
+        </div>
+        </div>
+    </div>
+</body>
+</html>

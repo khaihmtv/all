@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dong ho</title>
+</head>
+<script src="public/jquery.js"></script>
+   
+            <script type="text/javascript"> 
+				var days1 = 1;
+				var hours1 = 1;
+				var minutes1 = 48;
+				var seconds1 = 55;
+				
+				function display1() {
+					
+					if (days1 > 0 || hours1 > 0 || minutes1 > 0 || seconds1 > 0) {
+						
+						if (hours1 <= 0 && minutes1 <= 0 && seconds1 <= 0) {hours1 = 23; minutes1 = 59; seconds1 = 59; days1 -= 1}
+						else if (minutes1 <= 0 && seconds1 <= 0) {minutes1 = 59; seconds1 = 59; hours1 -= 1}
+						else if (seconds1 <= 0) {seconds1 = 59; minutes1 -= 1}
+						else {seconds1 -= 1}
+						
+						//if (String(hours1).length == 1) {hours1 = "0" + hours1;}
+						//if (String(minutes1).length == 1) {minutes1 = "0" + minutes1;}
+						//if (String(seconds1).length == 1) {seconds1 = "0" + seconds1;}
+                        $("#a").html(minutes1);
+                        $("#b").html(seconds1);
+                        setTimeout("display1()",1000);
+                        
+						
+					} else {
+						countdown2.innerHTML = "<span class='counterPart'><span class='counterType'>days</span><span class='counterVal'>0</span></span>"
+						countdown2.innerHTML += "<span class='counterPart'><span class='counterType'>hours</span><span class='counterVal'>0</span></span>"
+						countdown2.innerHTML += "<span class='counterPart'><span class='counterType'>mins</span><span class='counterVal'>0</span></span>"
+						countdown2.innerHTML += "<span class='counterPart'><span class='counterType'>secs</span><span class='counterVal'>0</span></span>"
+					}
+					
+				};
+				
+				display1();
+			</script>
+</script>
+<body>
+       <div id="a"></div>
+       <div id="b"></div>
+</body>
+</html>

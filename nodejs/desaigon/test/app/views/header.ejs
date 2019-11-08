@@ -1,0 +1,120 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<!--...............sidenav.....................-->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <% if(acc!='unlogin'){ %>
+  <a class='acc'><%if(sex==0){ %> <span>Bà</span> <%}else{%> <span>Ông</span> <%}%><span class='acc'><%= acc%></span><p class='ba'><%= ba%> VND</p></a>
+  <a onclick="openNav('nganhang')"><i class="material-icons" style="font-size:36px;padding-top:7px;">&#xe84f; </i> Ngân Hàng <i class="material-icons float-right" style="font-size:36px;padding-top:10px;">&#xe315;</i></a>
+  <a onclick="openNav('saoke')"><i class="material-icons" style="font-size:36px;padding-top:7px;">&#xe8b0; </i> Sao Kê <i class="material-icons float-right" style="font-size:36px;padding-top:10px;">&#xe315;</i></a>
+  <a href="http://localhost:3000/user/message"><i class="material-icons" style="font-size:36px;padding-top:7px;">&#xe0be; </i> Tin Nhắn</a>
+  <a href="http://localhost:3000/user/profile"><i class="material-icons" style="font-size:36px;padding-top:7px;">&#xe851; </i> Tài Khoản</a>
+  <a href="http://localhost:3000/user/logout"><i class="material-icons" style="font-size:36px;padding-top:7px;">&#xe8ac; </i> Đăng xuất</a>
+  <%}%>
+</div>
+
+
+<div id='nganhang' class="sidenav" style="z-index: 20">
+  <div class="clear-fix">
+    <a href="javascript:void(0)" class="closebtn float-left" style="width:50%;text-align: start; padding-left: 10px;" onclick="closeNa('nganhang')"><i class="material-icons" style="font-size: 3rem;vertical-align: middle">&#xe314;</i></a>
+    <a href="javascript:void(0)" class="closebtn float-right" style="width:50%" onclick="closeNav()">&times;</a>
+  </div>
+    <a href="http://localhost:3000/user/bank/deposit"> Gửi Tiền </a>
+    <a href="http://localhost:3000/user/bank/withdraw"> Rút Tiền </a>
+</div>
+
+<div id='saoke' class="sidenav" style="z-index: 20">
+    <div class="clear-fix">
+      <a href="javascript:void(0)" class="closebtn float-left" style="width:50%;text-align: start; padding-left: 10px;" onclick="closeNa('saoke')"><i class="material-icons" style="font-size: 3rem;vertical-align: middle">&#xe314;</i></a>
+      <a href="javascript:void(0)" class="closebtn float-right" style="width:50%" onclick="closeNav()">&times;</a>
+    </div>
+    <a href="http://localhost:3000/user/bank/deposit"> Lịch Sử Cược </a>
+    <a href="http://localhost:3000/user/bank/withdraw"> Lịch Sử Giao Dịch </a>
+</div>
+
+<!--........................................................-->
+<div class="header">
+    <a href='/'><div class="title">Vbet</div></a>  
+    <div>
+      <% if(acc!='unlogin'){ %>
+        <div class="display-lg-up">
+          <div class="row info">
+            
+            
+            <a class='acc' href="http://localhost:3000/user/profile"><span><%= acc%></span><span class='ba'><span class="phay"><%= ba%></span> VND</span></a>
+            
+            <a href="http://localhost:3000/user/bank"><i class="material-icons" style="font-size:36px;padding-top:7px;">&#xe84f;</i></a>
+            <a href="http://localhost:3000/user/result"><i class="material-icons" style="font-size:36px;padding-top:7px;">&#xe8b0;</i></a>
+            <a href="http://localhost:3000/user/message"><i class="material-icons" style="font-size:36px;padding-top:7px;">&#xe0be;</i></a>
+            <a href="http://localhost:3000/user/logout" ><i class="material-icons" style="font-size:36px;padding-top:7px;">&#xe8ac;</i></a>
+          </div>
+        </div>
+        
+        <div class="display-lg-down">
+          <div class="control" onclick="openNav('mySidenav')"><div></div><div></div><div></div></div>
+        </div>
+      <% }else{ %>
+        <div class="display-lg-up">
+          <div class="cpucontrol">
+           <div class="line">
+            <input type="text" name="logusername" id="logusername" placeholder="Tên truy cập" autocomplete="off" required>
+            <input type="password" name="logpassword" id="logpassword" placeholder="Mật khẩu" autocomplete="off" required>
+            <input type="button" class='button-login' id='login' value="Đăng Nhập"> 
+            <a href="http://localhost:3000/user/register"><input type="button" class='button-reg' id='login'  value="Đăng Ký"> </a>
+           </div>
+          </div>
+  
+        </div>
+        
+        <div class="display-lg-down">
+          <button class="button-m button-large ">
+            <a href="http://localhost:3000/user/login" >
+              <b>Đăng Nhập <hr> Đăng Ký</a></b>
+            </button>
+          </div>
+      <%}%>  
+    </div>  
+
+</div>
+<script>
+          $(function(){				
+            $('#login').click(function(e){
+                e.preventDefault();
+                console.log('click');
+
+                let data = {};
+                data.logusername = $('#logusername').val();
+                data.logpassword =$('#logpassword').val();
+                
+                $.ajax({
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    url: 'http://localhost:3000/user/login',						
+                    success: function(data){
+                        if(data.redirect==='/'){
+                            window.location=data.redirect
+                        }else{
+                            alert('Sai tên truy cập hoặc mật khẩu')
+                        }
+                    }
+                });
+            });				
+        });
+
+
+    function openNav(a) {
+      document.getElementById(a).style.width = "100%";
+    }
+    function closeNav() {
+        document.getElementById('mySidenav').style.width = "0";
+        document.getElementById('nganhang').style.width = "0";
+        document.getElementById('saoke').style.width = "0";
+    }
+    function closeNa(a) {
+      document.getElementById(a).style.width = "0";
+    }
+    
+</script>

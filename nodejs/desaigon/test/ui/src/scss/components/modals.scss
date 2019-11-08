@@ -1,0 +1,222 @@
+// MODALS
+// ==============================
+
+$modal-shadow: true !default;
+$modal-bg-color: $color-white !default;
+$modal-mask-color: $color-gray-700 !default;
+$modal-content-bg-color: $color-gray-200 !default;
+
+.modal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba($modal-mask-color, 0.5);
+    z-index: 10;
+    display: none;
+}
+    .modal-mask1 {
+        display: block; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background: rgba($modal-mask-color, 0.5);
+    }
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 540px;
+    min-width: 90%;
+    background: #2d2d2d;
+    border-radius: 5px;
+    overflow: hidden;
+    color:#fff;
+
+    @if $modal-shadow {
+        box-shadow: 0 4px 12px rgba($color-gray-600, 0.5);
+    }
+}
+
+.modal1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #2d2d2d;
+    max-width: 540px;
+    min-width: 90%;
+    margin: 15% auto; /* 15% from the top and centered #fefefe */
+    padding: 2%;
+    border-radius: 5px;
+    overflow: hidden;
+    color:#fff;
+    width: 80%; /* Could be more or less, depending on screen size */
+
+    @if $modal-shadow {
+        box-shadow: 0 4px 12px rgba($color-gray-600, 0.5);
+    }
+  }
+
+.modal-head {
+    background-color: #4b4b4b;
+    padding: 0px 15px;
+    .modal-title {
+        font-size: 20px;
+        font-weight: 400;
+    }
+    p{
+        color: #84b653;
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 1rem;
+    }
+}
+
+.modal-body {
+  background-color: #323232;
+  padding: 2%;
+  .so{
+    display: flex;
+    flex-wrap:nowrap;
+    justify-content:space-between;
+    padding-bottom: 2%;
+    input[type='number']{
+      border: none;
+      text-align: center;
+      font-size: 3rem;
+      //background-color: #d9d9d9;
+      color: #bd4700;
+      font-weight: bold;
+      font-family: Lato;
+    }
+  }
+  
+  
+ul {
+    list-style: none;
+    padding: 0px;
+}
+ul li{
+  display: inline-block;
+}
+ul li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: none;//2px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 25px;
+    white-space: nowrap;
+    margin: 3px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+ul li label {
+    padding: 8px 8px;
+    cursor: pointer;
+}
+/*
+ul li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    content: "";
+    transition: transform .3s ease-in-out;
+}
+
+ul li input[type="checkbox"]:checked + label::before {
+    content: "";
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+*/
+ul li input[type="checkbox"]:checked + label {
+    border: none;//2px solid #1bdbf8;
+    background-color: #c8e6c9;
+    color: #000;
+    font-weight: 700;
+    transition: all .2s;
+}
+
+ul li input[type="checkbox"] {
+  display: absolute;
+}
+ul li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+ul li input[type="checkbox"]:focus + label {
+  border: none;//2px solid #e9a1ff;
+}
+
+  .phin{
+    .phin1{   
+      height: 40px;
+      display:-moz-box;
+      -moz-box-pack: center;
+      -moz-box-align: center;
+      display:-webkit-box;
+      -webkit-box-pack: center;
+      -webkit-box-align: center;
+      
+      .phin2{
+        width: 80%;
+        height: 30px;
+        border-radius: 5px;
+        background-color: #fe9200;
+        text-align: center;
+        font-weight: 700;
+        cursor: pointer;
+
+        b{
+          line-height: 30px;
+        }
+      }
+    }
+  }
+
+}
+
+.modal-footer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding: 15px;
+
+    & > * {
+        margin-bottom: 0;
+    }
+}
+
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+text-decoration: none;
+cursor: pointer;
+}
+

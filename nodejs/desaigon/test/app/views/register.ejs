@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="../ui.css">
+
+    <style>
+      #erroremail,#errorusername,#errorpassword,#errorrepassword{
+        background-color: #fce4ec;
+      }
+    </style>
+    
+    <script type="text/javascript">
+
+function isEmail() {
+  let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let email=$('#email').val();
+    if(!re.test(email)){
+      $('#erroremail').html('Vui lòng điền địa chỉ email khả dụng.');
+      document.getElementById("register").disabled = true;
+    }else{
+      $('#erroremail').html('');
+      document.getElementById("register").disabled = false;
+    }
+
+  $.ajax({
+      type: 'POST',data: JSON.stringify({checkemail:email}),contentType: 'application/json',url: 'http://localhost:3000/user/register',						
+      success: function(data){
+          if(data.checkemail===false){
+            $('#erroremail').html('Email đã được đăng ký.');
+            document.getElementById("register").disabled = true;
+          }
+    }})
+}
+function isUsername(){
+  let re=/^([0-9]|[a-zA-Z]){5,16}$/
+  let username=$('#username').val()
+  if(!re.test(username)){
+    $('#errorusername').html('Tạo tên truy cập dài từ 5-16 ký tự, bao gồm chữ (a-z) và số (0-9).')
+    document.getElementById("register").disabled = true;
+  }else{
+    $('#errorusername').html('')
+    document.getElementById("register").disabled = false;
+  }
+
+  $.ajax({
+      type: 'POST',data: JSON.stringify({checkusername:username}),contentType: 'application/json',url: 'http://localhost:3000/user/register',						
+      success: function(data){
+          if(data.checkusername===false){
+            $('#errorusername').html('Tên truy cập đã được đăng ký.');
+            document.getElementById("register").disabled = true;
+          }
+  }})
+}
+
+function isPassword(){
+  let re =/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]{6,})$/
+  let password=$('#password').val()
+  if(!re.test(password)){
+    $('#errorpassword').html('Tạo mật khẩu dài từ 5-16 ký tự, bao gồm chữ (a-z) và số (0-9).');
+    document.getElementById("register").disabled = true;
+  }else{
+    $('#errorpassword').html('');
+    document.getElementById("register").disabled = false;
+  }
+}
+
+function isRepassword(){
+  let password=$('#password').val()
+  let repassword=$('#repassword').val()
+  if(repassword.length>5){
+    if(password!=repassword){
+      $('#errorrepassword').html('Xác nhận mật khẩu không chính xác. Vui lòng nhập lại');
+      document.getElementById("register").disabled = true;
+    }else{
+      $('#errorrepassword').html('');
+      document.getElementById("register").disabled = false;
+    }
+  }
+  
+}
+
+$(document).ready(function() {
+    var elements = $("input, select");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].oninvalid = function(e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+                 e.target.setCustomValidity(e.target.getAttribute("requiredmsg"));
+            }
+        };
+        elements[i].oninput = function(e) {
+            e.target.setCustomValidity("");
+        };
+    }
+})
+ 
+
+
+    </script>
+</head>
+<body>
+  <% include header %>
+
+  <div class="container">
+    <h1>ĐĂNG KÝ</h1>
+  </br>
+    <h3 id="notice"></h3>
+    <form action="/user/register" method="POST" id="form" name="registration">
+      <legend>Địa chỉ Email</legend>
+      <input type="text" name='email' id="email" autocomplete="off" onblur="isEmail()" required requiredmsg="Có vẻ như Quý Khách quên điền mục này"></br>
+      <p id='erroremail'></p>
+      <legend>Tên Truy Cập</legend>
+      <input type="text" name='username' id="username" autocomplete="off" onblur="isUsername()" required requiredmsg="Có vẻ như Quý Khách quên điền mục này"></br>
+      <p id='errorusername'></p>
+      <legend>Mật Khẩu</legend>
+      <input type="password" name='password' id="password" autocomplete="off" onblur="isPassword()" required requiredmsg="Có vẻ như Quý Khách quên điền mục này"></br>
+      <p id='errorpassword'></p>
+      <legend for="">Nhập Lại Mật Khẩu</legend>
+      <input type="password" name='repassword' id="repassword" autocomplete="off" onkeyup="isRepassword()" required requiredmsg="Có vẻ như Quý Khách quên điền mục này"></br>
+      <p id='errorrepassword'></p>
+      <input type="checkbox" name="checkbox" id="checkbox" checked> <span>Tôi đủ 18 tuổi và Tôi đã đọc <a href="/dieukhoan">Điều Khoản và Điều Kiện</a></span></br>
+      <button type="submit" id="register" class="button-reg" >Đăng Ký</button>
+    </form>
+  </div>
+    
+</body>
+</html>
