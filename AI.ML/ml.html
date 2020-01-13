@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ml</title>
+</head>
+<body>
+
+    <h3 style="padding: 20px;border:1px solid green;" id="data"></h3>
+    <buton onclick="add(0)" style="padding: 20px;border:1px solid green;">Add 0</buton> 
+    <buton onclick="add(1)" style="padding: 20px;border:1px solid green;">Add 1</buton>  
+
+    <script src="https://unpkg.com/brain.js@2.0.0-alpha.9/dist/brain-browser.min.js"></script>
+    <script>
+        let config={
+            hiddenLayers: [16,8],
+            activation: 'sigmoid',
+        }
+        let data=[1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,1,0,0,1,1,1,0,1,0,1,0,1,1,1,1,
+        0,0,0,
+    ]
+        let len=data.length
+        const net3 = new brain.NeuralNetwork(config)
+        const net4 = new brain.NeuralNetwork(config)
+        const net5 = new brain.NeuralNetwork(config)
+        const net6 = new brain.NeuralNetwork(config)
+        const net7 = new brain.NeuralNetwork(config)
+        const net8 = new brain.NeuralNetwork(config)
+
+        let locdata=(data,lenTrain)=>{
+            let len=data.length-1
+            let r=[]
+            while(len>=lenTrain){
+                len--
+                let input=[]
+                let output=[]
+                
+                for(let i=0;i<lenTrain;i++){
+                    input.push(data[len-i])
+                }
+    
+                output.push(data[len+1])
+                r.push({input,output})
+            }
+            return r
+        }
+    function train(){
+        const train3=locdata(data,3)
+        const train4=locdata(data,4)
+        const train5=locdata(data,5)
+        const train6=locdata(data,6)
+        const train7=locdata(data,7)
+        const train8=locdata(data,8)
+        net3.train(train3)
+        net4.train(train4)
+        net5.train(train5)
+        net6.train(train6)
+        net7.train(train7)
+        net8.train(train8)
+        const output3 = net3.run([data[len-3], data[len-2], data[len-1]])
+        const output4 = net4.run([data[len-4],data[len-3], data[len-2], data[len-1]])
+        const output5 = net5.run([data[len-5], data[len-4], data[len-3], data[len-2], data[len-1]])
+        const output6 = net6.run([data[len-6], data[len-5], data[len-4] ,data[len-3], data[len-2], data[len-1]])
+        const output7 = net5.run([data[len-7],data[len-6],data[len-5], data[len-4], data[len-3], data[len-2], data[len-1]])
+        const output8 = net6.run([data[len-8],data[len-7],data[len-6], data[len-5], data[len-4] ,data[len-3], data[len-2], data[len-1]])
+        console.log((output3[0]+output4[0]+output5[0]+output6[0]+output7[0]+output8[0])/6)
+    }
+        function add(a){
+            data.push(+a)
+            document.getElementById("data").innerHTML=data
+            train()
+        }
+        document.getElementById("data").innerHTML=data
+        </script>
+
+</body>
+</html>
