@@ -17,6 +17,6 @@
     "fs": "0.0.1-security",
     "http": "0.0.0",
     "shortid": "^2.2.8",
-    "socket.io": "^1.7.2"
+    "socket.io": "^2.4.0"
   }
 }
